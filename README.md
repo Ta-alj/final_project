@@ -71,8 +71,7 @@ before beginning to populate the database, it is important to understand the sch
  ```bash
  wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
 ```
-to unzipp `variant_summary.txt.gz`
-**Note**: please make sure that the `variant_summary.txt` is in the same directory as `ppd.py` to avoid errors.
+
 ### 1. **make sure the previous prerequisites are met**
 - Make sure the modules mentioned previously in the **Prerequisites** section are installed.
 - Also make sure that MySQL server is running and configured with the previous mentioned tables.
