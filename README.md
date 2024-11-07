@@ -66,8 +66,8 @@ before beginning to populate the database, it is important to understand the sch
 **Note**: please make sure that your database schema follows the previous structure before running `ppd.py` to avoid errors :-)
 
  ## Populating the database
- Before we set up the database, we must gett the raw data from [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz) 
- By 
+ Before we set up the database, we must get the raw data from [Clinvar](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz) 
+ By:
  ```bash
  wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
 ```
