@@ -2,6 +2,7 @@
 
 The Genetic Variation Search tool is a web based bioinformatics tool designed for users to search for genetic variations linked to a specific phenotype or a gene symbol. It connects to a mysql database to retrieve and show detailed information about the user search like: allele ID, mutation type, genomic locations and clinical significance.
 
+**NOTE: The data used is of *Homo sapiens* specifcally GRCh38 assembly**
 ## Prerequisites
 
 The following prerequisites must be met for python and the modules needed:
@@ -18,7 +19,7 @@ The following prerequisites must be met for python and the modules needed:
 The server must contain a database with the configured schema as entailed in the schema overview section.
 
 - **Apache** Must be installed and configured to execute the python CGI script.
-NOTICE: make sure that the mod_cgi module is enabled and that your Apache configuration points to the directory containing the CGI script to not run into errors.
+**NOTE: make sure that the mod_cgi module is enabled and that your Apache configuration points to the directory containing the CGI script to not run into errors.*
 
 - **HTML template** must be placed in ./templates directory relative to the CGI script.
 
@@ -41,10 +42,6 @@ before beginning to populate the database, it is important to understand the sch
   -  `stop` (INT)
   -  `cytogenetic` (VARCHAR(60))
 
-- **`variant_rcv`**: Stores ClinVar RCV accession numbers associated with variants.
-  - `variant_id` (INT, forign key to `variants` table)
-  - `rcv_accession` ( varchar(100) PRI key)
-
 - **`variant_references`**: contains references from external databases for the variants.
   - `variant_id` (INT, foreign key to `variants` table)
   - `variant_db` (VARCHAR(100))
@@ -54,10 +51,10 @@ before beginning to populate the database, it is important to understand the sch
   - `phenotype_id` (INT, PRI KEY, auto_increment)
   - `phenotype_name` (text)
 
-  - **`variant_phenotype`**: the table links variants to phenotype and include the clinical significance.
-    - `variant_id` (INT, foreign key to `variants` table)
-    - `phenotype_id` (INT, foreign key to `phenotypes` table)
-    - `clinical_significance` (VARCHAR(255))
+- **`variant_phenotype`**: the table links variants to phenotype and include the clinical significance.
+   - `variant_id` (INT, foreign key to `variants` table)
+   - `phenotype_id` (INT, foreign key to `phenotypes` table)
+   - `clinical_significance` (VARCHAR(255))
 
 ## Relationships
 - The **`genes`** table is linked to **`variants`** table by `gene_id`
