@@ -120,7 +120,7 @@ once everything has been set up as instructed, please follow these steps to use 
   - Make sure that `variant_summary.txt` exists in the same directory as `ppd.py`.
   - Double check that the file has been unzipped and is not corrupted.
 -  **HTML files**:
-  - Some issues may arise due to the paths in the HTML files for JavaScripts and css as well as the path to the gvs.cgi form path which may need to be corrected according to your setup. 
+  - Some issues may arise due to the paths in the HTML files for the gvs.cgi form which may need to be corrected according to your setup. 
 
 
 
