@@ -68,7 +68,10 @@ before beginning to populate the database, it is important to understand the sch
  ```bash
  wget https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
 ```
-
+After the download is done, unzipp the file:
+```bash
+gunzip variant_summary.txt.gz
+```
 ### 1. **make sure the previous prerequisites are met**
 - Make sure the modules mentioned previously in the **Prerequisites** section are installed.
 - Also make sure that MySQL server is running and configured with the previous mentioned tables.
@@ -79,14 +82,15 @@ before beginning to populate the database, it is important to understand the sch
   ```
 - Run the python script to populate the database:
   ```bash
-  python3 ppd.py
+  ./ppd.py
   ```
 ## Directory structure
 Below is the directory structure for the tool to work:
 ```bash
 .
 ├── css
-│   └── result.css
+│   ├── result.css
+│   └── form.css 
 ├── form_handle.html
 ├── gvs.cgi
 ├── js
@@ -115,6 +119,8 @@ once everything has been set up as instructed, please follow these steps to use 
 - **Missing data**:
   - Make sure that `variant_summary.txt` exists in the same directory as `ppd.py`.
   - Double check that the file has been unzipped and is not corrupted.
+-  **HTML files**:
+  - Some issues may arise due to the paths in the HTML files for JavaScripts and css as well as the path to the gvs.cgi form path which may need to be corrected according to your setup. 
 
 
 
