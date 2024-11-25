@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>variation search</title>
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <script type="text/javascript" src="js/form_handle.js"></script>
+</head>
+<body>
+<h1 class="title">Genetic Variation Search Tool</h1>
+<div class="intro-box">
+    <p>Welcome to the genetic variation search tool. Use the search bar below to find genetic variations based on a given gene symbol or a phenotype. Select your search type from the menu and enter the term to get started!</p>
+    <p class="notice-infor">Please note that if you search by phenotype, all descriptions associated with the phenotype entry will be displayed which includes related conditions.</p>
+</div>
+<form method="POST" action="/cgi/script/path" class="searchform">
+    <label for="search_term" class="form-label">Enter Search Term:</label>
+    <input type="text" id="search_term" name="search_term" placeholder="Enter search term" class="searchbar" required autofocus>
+    <label for="search_type" class="form-label">Search by:</label>
+    <select id="search_type" name="search_type" class="dropdown" required>
+        <option value="" disabled selected>Choose Search Type</option>
+        <option value="gene">Gene Symbol</option>
+        <option value="phenotype">Phenotype Name</option>
+    </select>
+<div id="phenotype-warning" class="phenotype-warning">
+            <strong>Note:</strong> Searching by phenotype will return descriptions associated with this entry,
+            including the desired description and others related to the entry.
+</div>
+    <input type="submit" value="Search" class="search-button">
+</form>
+</body>
+</html>

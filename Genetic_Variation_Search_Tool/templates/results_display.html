@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Variation search</title>
+    <link rel="stylesheet" type="text/css" href="css/result.css">
+    <script type="text/javascript" src="js/results_display.js"></script>
+</head>
+<body>
+<h1 class="title">Genetic Variation Search Tool</h1>
+
+<!-- Search form for the user -->
+<form method="POST" action="/cgi/script/path" class="searchform">
+    <label for="search_term">Enter Search Term:</label>
+    <input type="text" id="search_term" name="search_term" placeholder="Enter search term" class="searchbar" required autofocus>
+    <label for="search_type">Search by:</label>
+    <select id="search_type" name="search_type" class="dropdown" required>
+        <option value="" disabled selected>Choose Search Type</option>
+        <option value="gene">Gene Symbol</option>
+        <option value="phenotype">Phenotype Name</option>
+    </select>
+<div id="phenotype-warning" class="phenotype-warning">
+             Note: Searching by phenotype will return descriptions associated with this entry,
+             including the desired description and others related to the entry.
+</div>
+    <input type="submit" value="Search" class="search-button">
+</form>
+
+<h3 class="search-input">Search results for "{{ query }}"</h3>
+
+{% if results %}
+<table class="results-table">
+  <thead>
+    <tr>
+        <th>Gene Symbol</th>
+        <th>HGNC ID</th>
+        <th>Allele ID</th>
+        <th>Type</th>
+        <th>Start</th>
+        <th>Stop</th>
+        <th>Cytogenetic Location</th>
+        <th>Reference Info</th>
+        <th>Phenotype(s)</th>
+        <th>Clinical Significance</th>
+        <th class="description-column">Description (MONDO)</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for row in results %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+        <td>{{ row[6] }}</td>
+        <td>{{ row[7] }}</td>
+        <td>{{ row[8] }}</td>
+        <td>{{ row[9] }}</td>
+<td class="description-column">
+    {% if row[7] %}
+        {% set mondo_references = row[7].split(';') %}
+        {% set mondo_list = [] %}
+
+        {% for ref in mondo_references %}
+            {% if "MONDO:MONDO:" in ref %}
+                {% set mondo_id = ref.split('MONDO:MONDO:')[1].strip() %}
+                <p class="description-number">Description for: {{ mondo_id }}</p>
+                <span data-mondo="{{ mondo_id }}">loading description...</span>
+                 {% set _ = mondo_list.append(mondo_id) %}
+            {% elif "MONDO:" in ref %}
+                {% set mondo_id = ref.split('MONDO:')[1].strip() %}
+                <p class="description-number">Description for: {{ mondo_id }}</p>
+                <span data-mondo="{{ mondo_id }}">loading description...</span>
+                 {% set _ = mondo_list.append(mondo_id) %}
+            {% endif %}
+        {% endfor %}
+
+        {% if mondo_list | length == 0 %}
+            <p> No MONDO reference found in the entry references</p>
+        {% endif %}
+    {% else %}
+        <p>No references found</p>
+    {% endif %}
+</td>
+
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="pagination">
+    {% if cur_page > 1 %}
+        <form method="POST" action="/test04/gvs.cgi" class="pagination-form">
+            <input type="hidden" name="search_term" value="{{ query }}">
+            <input type="hidden" name="search_type" value="{{ search_type }}">
+            <input type="hidden" name="page" value="1">
+            <input type="submit" value="First" class="pagination-button">
+        </form>
+        <form method="POST" action="/test04/gvs.cgi" class="pagination-form">
+            <input type="hidden" name="search_term" value="{{ query }}">
+            <input type="hidden" name="search_type" value="{{ search_type }}">
+            <input type="hidden" name="page" value="{{ cur_page - 1 }}">
+            <input type="submit" value="Previous" class="pagination-button">
+        </form>
+    {% endif %}
+    {% for page_num in range(1, total_pages + 1) %}
+        <form method="POST" action="/test04/gvs.cgi" class="pagination-form">
+            <input type="hidden" name="search_term" value="{{ query }}">
+            <input type="hidden" name="search_type" value="{{ search_type }}">
+            <input type="hidden" name="page" value="{{ page_num }}">
+            <input type="submit" value={{ page_num }} class="pagination-button {% if page_num == cur_page %}current-page{% endif %}">
+        </form>
+    {% endfor %}
+    {% if cur_page < total_pages %}
+        <form method="POST" action="/test04/gvs.cgi" class="pagination-form">
+            <input type="hidden" name="search_term" value="{{ query }}">
+            <input type="hidden" name="search_type" value="{{ search_type }}">
+            <input type="hidden" name="page" value="{{ cur_page + 1 }}">
+            <input type="submit" value="Next" class="pagination-button">
+        </form>
+        <form method="POST" action="/test04/gvs.cgi" class="pagination-form">
+            <input type="hidden" name="search_term" value="{{ query }}">
+            <input type="hidden" name="search_type" value="{{ search_type }}">
+            <input type="hidden" name="page" value="{{ total_pages }}">
+            <input type="submit" value="Last"class="pagination-button">
+        </form>
+    {% endif %}
+</div>
+
+{% else %}
+<p>No results found for your search</p>
+{% endif %}
+
+<h6>All rights reserved by the author Tarik Aljuaie</h6>
+</body>
+</html>

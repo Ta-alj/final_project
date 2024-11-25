@@ -1,0 +1,64 @@
+body {
+    background-color:  #CDDDDD;
+    font-family: Arial, sans-serif;
+    color: #2E2F2F;
+}
+.title {
+    text-align: center;
+    color: #051014;
+    margin-top: 20px;
+}
+.intro-box {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #F7F7F7;
+    border: 1px solid #A599B5;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+.searchform {
+    background-color: #ACBDBA;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.form-label {
+    font-weight: bold;
+    color: #051014;
+    display: block;
+    margin-bottom: 8px;
+}
+input.searchbar,
+select.dropdown,
+input.search-button {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #2E2F2F;
+    border-radius: 4px;
+}
+input.search-button {
+    background-color: #A599B5;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+input.search-button:hover {
+    background-color: #2E2F2F;
+}
+select.dropdown {
+    background-color: #FFFFFF;
+}
+ .phenotype-warning {
+     color: red;
+     font-size: 0.9em;
+     font-weight: bold;
+     display: none;
+     margin-top: 10px;
+}
