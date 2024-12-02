@@ -3,6 +3,9 @@
 The Genetic Variation Search tool is a web based bioinformatics tool designed for users to search for genetic variations linked to a specific phenotype or a gene symbol. It connects to a mysql database to retrieve and show detailed information about the user search like: allele ID, mutation type, genomic locations and clinical significance.
 
 **NOTE: The data used is of *Homo sapiens* specifcally GRCh38 assembly**
+## Access to the tool
+To access the tool directly, please click on the following link:
+[Genetic Variation search tool](http://bfx3.aap.jhu.edu/taljuai1/final_tool/form_handle.html)
 ## Prerequisites
 
 The following prerequisites must be met for python and the modules needed:
